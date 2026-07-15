@@ -1,0 +1,105 @@
+import type { SlideMeta, WeddingDetails } from '../types/wedding'
+
+export const wedding: WeddingDetails = {
+  couple: {
+    bride: 'Анастасия',
+    groom: 'Эдуард',
+  },
+  startsAt: '2026-08-15T11:00:00+05:00',
+  endsAt: '2026-08-16T00:00:00+05:00',
+  rsvpDeadline: '2026-08-10T23:59:59+05:00',
+  timeZone: 'Asia/Yekaterinburg',
+  locations: [
+    {
+      id: 'ceremony',
+      title: 'Торжественная регистрация',
+      venue: 'Отделение ЗАГС Ленинского района',
+      address: 'Екатеринбург, ул. Хохрякова, 104',
+      startsAt: '2026-08-15T11:00:00+05:00',
+      mapQuery: 'Отделение ЗАГС Ленинского района Екатеринбург Хохрякова 104',
+    },
+    {
+      id: 'banquet',
+      title: 'Праздничный банкет',
+      venue: 'Ресторан «Гоголь 15»',
+      address: 'Екатеринбург, ул. Гоголя, 15е',
+      startsAt: '2026-08-15T15:00:00+05:00',
+      mapQuery: 'Ресторан Гоголь 15 Екатеринбург Гоголя 15е',
+    },
+  ],
+}
+
+export const slides: readonly SlideMeta[] = [
+  {
+    id: 'hero',
+    title: 'Анастасия и Эдуард',
+    eyebrow: 'Приглашение на свадьбу',
+    description: '15 августа 2026 года',
+    background: '/hero-bg.png',
+    tone: 'light',
+  },
+  {
+    id: 'countdown',
+    title: 'До нашей свадьбы осталось',
+    eyebrow: 'Считаем дни вместе',
+    description: 'Точный отсчёт до начала церемонии',
+    background: '/countdown-bg.png',
+    tone: 'light',
+  },
+  {
+    id: 'calendar',
+    title: 'Август 2026',
+    eyebrow: 'Сохраните дату',
+    description: 'Суббота, 15 августа',
+    background: '/countdown-bg.png',
+    tone: 'light',
+  },
+  {
+    id: 'schedule',
+    title: 'Наш день',
+    eyebrow: 'Расписание',
+    description: 'Семь важных моментов, которые мы разделим с вами',
+    background: '/countdown-bg.png',
+    tone: 'light',
+  },
+  {
+    id: 'location',
+    title: 'Карта и адреса',
+    eyebrow: 'Как добраться',
+    description: 'ЗАГС и ресторан на одной карте',
+    background: '/countdown-bg.png',
+    tone: 'light',
+  },
+  {
+    id: 'seating',
+    title: 'План рассадки гостей',
+    eyebrow: 'Ваше место',
+    description: 'Схема столов и поиск по имени',
+    background: '/countdown-bg.png',
+    tone: 'light',
+  },
+  {
+    id: 'wishes',
+    title: 'Пожелания',
+    eyebrow: 'Самое главное — вы',
+    description: 'Ваше присутствие станет для нас лучшим подарком',
+    background: '/07.png',
+    tone: 'light',
+  },
+  {
+    id: 'rsvp',
+    title: 'Подтверждение присутствия',
+    eyebrow: 'Ждём ваш ответ',
+    description: 'Пожалуйста, ответьте до 10 августа 2026 года',
+    background: '/countdown-bg.png',
+    tone: 'light',
+  },
+  {
+    id: 'finale',
+    title: 'До встречи 15 августа',
+    eyebrow: 'С любовью',
+    description: 'Анастасия и Эдуард',
+    background: '/09.png',
+    tone: 'dark',
+  },
+] as const

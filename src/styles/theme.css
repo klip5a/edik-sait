@@ -1,0 +1,23 @@
+@theme {
+  --color-ivory: #f7f2ea;
+  --color-paper: #fbf8f1;
+  --color-paper-deep: #efe3d1;
+  --color-ink: #433a33;
+  --color-ink-soft: #6e6258;
+  --color-gold: #c99a48;
+  --color-gold-deep: #9c6c26;
+  --color-gold-pale: #ead7ad;
+  --color-night: #17150f;
+  --color-night-soft: #29251a;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-script: "Marck Script", cursive;
+  --ease-wedding: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-soft: 0 1px 2px rgb(67 58 51 / 6%), 0 12px 36px rgb(67 58 51 / 8%);
+  --shadow-gold: 0 8px 30px rgb(156 108 38 / 18%);
+}
+
+:root {
+  --page-gutter: clamp(1.25rem, 4vw, 4rem);
+  --content-width: 76rem;
+  --navigation-size: 2.75rem;
+}
