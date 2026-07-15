@@ -6,8 +6,9 @@ import 'swiper/css/a11y'
 import 'swiper/css/effect-fade'
 import { SlideNavigation } from '../components/navigation/SlideNavigation'
 import { SlideProgress } from '../components/navigation/SlideProgress'
-import { SectionPreview } from '../components/slide/SectionPreview'
 import { slides } from '../data/wedding'
+import { InvitationSection } from '../sections/InvitationSection'
+import '../styles/sections.css'
 import '../styles/swiper.css'
 
 interface SliderState {
@@ -56,6 +57,9 @@ export function WeddingSlider() {
       allowTouchMove: true,
       touchAngle: 42,
       nested: true,
+      noSwiping: true,
+      noSwipingClass: 'swiper-no-swiping',
+      touchStartPreventDefault: false,
       keyboard: { enabled: true, onlyInViewport: true },
       mousewheel: { forceToAxis: true, releaseOnEdges: true },
       navigation: {
@@ -96,7 +100,7 @@ export function WeddingSlider() {
         <div class="swiper-wrapper">
           {slides.map((slide, index) => (
             <div class="swiper-slide wedding-slider__slide" key={slide.id}>
-              <SectionPreview slide={slide} index={index} />
+              <InvitationSection index={index} swiper={swiperRef.current} />
             </div>
           ))}
         </div>

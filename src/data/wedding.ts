@@ -35,7 +35,7 @@ export const slides: readonly SlideMeta[] = [
     title: 'Анастасия и Эдуард',
     eyebrow: 'Приглашение на свадьбу',
     description: '15 августа 2026 года',
-    background: '/hero-bg.png',
+    background: '/backgrounds/wedding-light-v1.png',
     tone: 'light',
   },
   {
@@ -43,7 +43,7 @@ export const slides: readonly SlideMeta[] = [
     title: 'До нашей свадьбы осталось',
     eyebrow: 'Считаем дни вместе',
     description: 'Точный отсчёт до начала церемонии',
-    background: '/countdown-bg.png',
+    background: '/backgrounds/wedding-light-v1.png',
     tone: 'light',
   },
   {
@@ -51,7 +51,7 @@ export const slides: readonly SlideMeta[] = [
     title: 'Август 2026',
     eyebrow: 'Сохраните дату',
     description: 'Суббота, 15 августа',
-    background: '/countdown-bg.png',
+    background: '/backgrounds/wedding-light-v1.png',
     tone: 'light',
   },
   {
@@ -59,7 +59,7 @@ export const slides: readonly SlideMeta[] = [
     title: 'Наш день',
     eyebrow: 'Расписание',
     description: 'Семь важных моментов, которые мы разделим с вами',
-    background: '/countdown-bg.png',
+    background: '/backgrounds/wedding-light-v1.png',
     tone: 'light',
   },
   {
@@ -67,7 +67,7 @@ export const slides: readonly SlideMeta[] = [
     title: 'Карта и адреса',
     eyebrow: 'Как добраться',
     description: 'ЗАГС и ресторан на одной карте',
-    background: '/countdown-bg.png',
+    background: '/backgrounds/wedding-light-v1.png',
     tone: 'light',
   },
   {
@@ -75,7 +75,7 @@ export const slides: readonly SlideMeta[] = [
     title: 'План рассадки гостей',
     eyebrow: 'Ваше место',
     description: 'Схема столов и поиск по имени',
-    background: '/countdown-bg.png',
+    background: '/backgrounds/wedding-light-v1.png',
     tone: 'light',
   },
   {
@@ -91,7 +91,7 @@ export const slides: readonly SlideMeta[] = [
     title: 'Подтверждение присутствия',
     eyebrow: 'Ждём ваш ответ',
     description: 'Пожалуйста, ответьте до 10 августа 2026 года',
-    background: '/countdown-bg.png',
+    background: '/backgrounds/wedding-light-v1.png',
     tone: 'light',
   },
   {
