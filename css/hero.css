@@ -1,0 +1,589 @@
+/* ==========================================
+   HERO
+========================================== */
+
+.hero{
+
+    position:relative;
+
+    width:100%;
+
+    height:100vh;
+
+    overflow:hidden;
+
+    background-image:url("../images/hero-bg.png");
+
+    background-size:cover;
+
+    background-position:center center;
+
+    background-repeat:no-repeat;
+
+}
+
+/* Затемнение */
+
+.hero__overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+
+            rgba(0,0,0,.08),
+
+            rgba(0,0,0,.15)
+
+        );
+
+    z-index:1;
+
+}
+
+/* Частицы */
+
+.hero__particles{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+
+}
+
+/* Контейнер */
+
+.hero .container{
+
+    position:relative;
+
+    width:100%;
+
+    max-width:1280px;
+
+    height:100%;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:3;
+
+}
+
+/* Контент */
+
+.hero__content{
+
+    width:100%;
+
+    max-width:760px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:40px;
+
+}
+/* ==========================================
+   HERO TYPOGRAPHY
+========================================== */
+
+.hero__invite{
+
+    font-size:30px;
+
+    font-weight:400;
+
+    line-height:1.55;
+
+    color:rgba(255,255,255,.95);
+
+    margin-bottom:38px;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.18),
+        0 0 8px rgba(255,255,255,.10);
+
+}
+
+/* ========================= */
+
+.hero__title{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:2px;
+
+}
+
+/* ========================= */
+
+.hero__name{
+
+    font-family:var(--font-title);
+
+    font-size:112px;
+
+    font-weight:400;
+
+    line-height:1;
+
+    color:#FFFDF8;
+
+    -webkit-font-smoothing:antialiased;
+
+    text-shadow:
+        0 2px 6px rgba(0,0,0,.12),
+        0 0 10px rgba(255,255,255,.18),
+        0 0 30px rgba(255,255,255,.08);
+
+}
+
+/* ========================= */
+
+.hero__heart{
+
+    font-size:52px;
+
+    color:var(--color-gold);
+
+    margin:6px 0;
+
+}
+
+/* ========================= */
+
+.hero__date{
+
+    margin:20px 0;
+
+    font-size:56px;
+
+    font-weight:600;
+
+    color:#C89B47;
+
+    letter-spacing:1px;
+
+    text-shadow:
+
+        0 2px 4px rgba(255,255,255,.18),
+
+        0 0 18px rgba(214,178,107,.18);
+
+}
+
+/* ========================= */
+
+.hero__place{
+
+    margin-top:18px;
+
+    font-size:28px;
+
+    line-height:1.55;
+
+    color:#ffffff;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.15),
+        0 0 8px rgba(255,255,255,.10);
+
+}
+/* ==========================================
+   ORNAMENT
+========================================== */
+
+.hero__ornament{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:18px;
+
+    margin:18px 0;
+
+    color:var(--color-gold);
+
+    font-size:16px;
+
+    letter-spacing:6px;
+
+}
+
+.hero__ornament span{
+
+    width:180px;
+
+    height:1px;
+
+    background:linear-gradient(
+
+        to right,
+
+        transparent,
+
+        rgba(200,155,71,.95),
+
+        transparent
+
+    );
+
+}
+
+/* ==========================================
+   GLOW BEHIND NAMES
+========================================== */
+
+.hero__title{
+
+    position:relative;
+
+}
+
+.hero__title::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    width:340px;
+
+    height:340px;
+
+    transform:translate(-50%,-50%);
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(255,218,140,.18),
+
+            rgba(255,218,140,.05) 55%,
+
+            transparent 75%
+
+        );
+
+    filter:blur(40px);
+
+    z-index:-1;
+
+}
+
+/* ==========================================
+   NEXT BUTTON
+========================================== */
+
+.hero__next{
+
+    position:relative;
+
+    margin-top:65px;
+
+    width:72px;
+
+    height:72px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    background:rgba(255,255,255,.10);
+
+    border:2px solid rgba(255,255,255,.85);
+
+    backdrop-filter:blur(12px);
+
+    transition:.45s;
+
+    overflow:hidden;
+
+}
+.hero__next::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-25px;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(255,218,140,.55),
+
+            transparent 70%
+
+        );
+
+    filter:blur(22px);
+
+    opacity:.75;
+
+    animation:buttonGlow 3s ease-in-out infinite;
+
+    z-index:-1;
+
+}
+
+.hero__next:hover{
+
+    transform:translateY(6px) scale(1.08);
+
+    background:rgba(255,255,255,.18);
+
+    box-shadow:
+
+        0 0 30px rgba(255,218,140,.35);
+
+}
+
+.hero__next svg{
+
+    width:32px;
+
+    height:32px;
+
+}
+/* ==========================================
+   HERO ANIMATIONS
+========================================== */
+
+/* Появление элементов */
+
+.hero__invite,
+.hero__title,
+.hero__ornament,
+.hero__date,
+.hero__place,
+.hero__next{
+
+    opacity:0;
+
+    transform:translateY(20px);
+
+    animation:fadeUp .9s ease forwards;
+
+}
+
+.hero__invite{
+    animation-delay:.2s;
+}
+
+.hero__title{
+    animation-delay:.5s;
+}
+
+.hero__ornament:first-of-type{
+    animation-delay:.8s;
+}
+
+.hero__date{
+    animation-delay:1s;
+}
+
+.hero__ornament:last-of-type{
+    animation-delay:1.2s;
+}
+
+.hero__place{
+    animation-delay:1.4s;
+}
+
+.hero__next{
+    animation-delay:1.8s;
+}
+
+/* Плавное появление */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* Легкое "дыхание" свечения */
+
+.hero__title::after{
+
+    animation:glowPulse 6s ease-in-out infinite;
+
+}
+
+@keyframes glowPulse{
+
+    0%{
+
+        transform:translate(-50%,-50%) scale(1);
+
+        opacity:.45;
+
+    }
+
+    50%{
+
+        transform:translate(-50%,-50%) scale(1.08);
+
+        opacity:.75;
+
+    }
+
+    100%{
+
+        transform:translate(-50%,-50%) scale(1);
+
+        opacity:.45;
+
+    }
+
+}
+
+/* Стрелка */
+
+.hero__next{
+
+    animation:
+        fadeUp .9s ease forwards,
+        floatArrow 2.5s ease-in-out infinite 2.4s;
+
+}
+
+@keyframes floatArrow{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* Медленное движение фона */
+
+.hero{
+
+    animation:heroMove 35s linear infinite alternate;
+
+}
+
+@keyframes heroMove{
+
+    from{
+
+        background-position:center top;
+
+    }
+
+    to{
+
+        background-position:center 25px;
+
+    }
+
+}
+@keyframes buttonGlow{
+
+    0%{
+
+        transform:scale(.9);
+
+        opacity:.45;
+
+    }
+
+    50%{
+
+        transform:scale(1.15);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:scale(.9);
+
+        opacity:.45;
+
+    }
+
+}
+/* На главной скрываем нижнюю навигацию */
+
+.hero.active ~ .navigation{
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:translateY(20px);
+
+}

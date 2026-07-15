@@ -1,0 +1,41 @@
+@import url("reset.css");
+@import url("variables.css");
+
+@import url("slider.css");
+
+@import url("hero.css");
+@import url("countdown.css");
+@import url("schedule.css");
+@import url("map.css");
+@import url("seating.css");
+@import url("wishes.css");
+@import url("footer.css");
+
+
+body{
+
+    font-family:var(--font-text);
+
+    background:var(--color-bg);
+
+    color:var(--color-text);
+
+    overflow:hidden;
+    min-height:100vh;
+}
+html{
+
+    height:100%;
+
+}
+
+
+/* Общий контейнер */
+
+.container{
+
+    width:min(100% - 40px,var(--container));
+
+    margin-inline:auto;
+
+}

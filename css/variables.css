@@ -1,0 +1,37 @@
+/* ==========================================
+   VARIABLES
+========================================== */
+
+:root{
+
+    /* Цвета */
+
+    --color-bg:#F7F2EA;
+
+    --color-white:#FFFFFF;
+
+    --color-text:#4A4038;
+
+    --color-gold:#D6B26B;
+
+    --color-gold-light:#E8D2A1;
+
+    --color-overlay:rgba(0,0,0,.15);
+
+    /* Шрифты */
+
+    --font-title:'Marck Script', cursive;
+
+    --font-text:'Cormorant Garamond', serif;
+
+    /* Размеры */
+
+    --container:1280px;
+
+    --radius:20px;
+
+    /* Анимации */
+
+    --transition:.8s cubic-bezier(.4,0,.2,1);
+
+}
