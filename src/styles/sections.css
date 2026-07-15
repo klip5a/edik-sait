@@ -201,6 +201,9 @@
 .checkbox-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 0.75rem; }
 .form-actions { justify-items: start; }
 .form-status { min-block-size: 1.4em; margin: 0.55rem 0 0; color: var(--color-ink-soft); }
+.form-status[data-state="found"] { color: #416844; font-weight: 700; }
+.form-status[data-state="error"],
+.form-status[data-state="not-found"] { color: #8c3f35; }
 .honeypot { position: absolute !important; inline-size: 1px !important; block-size: 1px !important; opacity: 0; pointer-events: none; }
 
 .section-heading--finale { color: white; font-size: clamp(3.5rem, 10vw, 7rem); text-shadow: 0 4px 24px rgb(0 0 0 / 42%); }

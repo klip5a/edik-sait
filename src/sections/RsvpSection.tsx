@@ -28,6 +28,7 @@ export function RsvpSection({ slide }: { slide: SlideMeta }) {
       alcoholOther: String(data.get('alcoholOther') ?? ''),
       dietary: String(data.get('dietary') ?? ''),
       comment: String(data.get('comment') ?? ''),
+      website: String(data.get('website') ?? ''),
     }
 
     setSubmitting(true)

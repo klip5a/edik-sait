@@ -18,7 +18,11 @@ export function SectionFrame({ slide, children, className = '', compact = false 
       data-tone={slide.tone}
       style={
         slide.background
-          ? ({ '--slide-background': `url(${slide.background})` } as JSX.CSSProperties)
+          ? ({
+              '--slide-background': slide.backgroundFallback
+                ? `image-set(url(${slide.background}) type("image/avif"), url(${slide.backgroundFallback}) type("image/png"))`
+                : `url(${slide.background})`,
+            } as JSX.CSSProperties)
           : undefined
       }
     >

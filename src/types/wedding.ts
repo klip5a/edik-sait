@@ -15,6 +15,7 @@ export interface SlideMeta {
   eyebrow: string
   description: string
   background?: string
+  backgroundFallback?: string
   tone: 'light' | 'dark'
 }
 
