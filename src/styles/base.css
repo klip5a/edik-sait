@@ -33,10 +33,6 @@ textarea {
   font: inherit;
 }
 
-button {
-  color: inherit;
-}
-
 :where(a, button, input, select, textarea):focus-visible {
   outline: 3px solid color-mix(in srgb, var(--color-gold-deep) 78%, white);
   outline-offset: 4px;

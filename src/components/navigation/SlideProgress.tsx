@@ -6,7 +6,7 @@ interface SlideProgressProps {
 
 export function SlideProgress({ activeIndex, titles, onSelect }: SlideProgressProps) {
   return (
-    <div class="fixed top-[max(1rem,calc(env(safe-area-inset-top)+0.4rem))] left-1/2 z-20 flex -translate-x-1/2 items-center gap-1 transition-colors duration-300 md:top-1/2 md:right-6 md:left-auto md:translate-x-0 md:-translate-y-1/2 md:flex-col" aria-label="Выбор экрана">
+    <div class={`fixed top-[max(1rem,calc(env(safe-area-inset-top)+0.4rem))] left-1/2 z-20 flex -translate-x-1/2 items-center gap-1 transition-colors duration-300 md:top-1/2 md:right-6 md:left-auto md:translate-x-0 md:-translate-y-1/2 md:flex-col ${activeIndex === titles.length - 1 ? 'text-paper' : ''}`} aria-label="Выбор экрана">
       {titles.map((title, index) => (
         <button
           key={title}
