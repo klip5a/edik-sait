@@ -8,8 +8,6 @@ import { SlideNavigation } from '../components/navigation/SlideNavigation'
 import { SlideProgress } from '../components/navigation/SlideProgress'
 import { slides } from '../data/wedding'
 import { InvitationSection } from '../sections/InvitationSection'
-import '../styles/sections.css'
-import '../styles/swiper.css'
 
 interface SliderState {
   activeIndex: number
@@ -95,11 +93,11 @@ export function WeddingSlider() {
   const activeTitle = slides[sliderState.activeIndex]?.title ?? slides[0].title
 
   return (
-    <div class="wedding-slider" data-active-slide={slides[sliderState.activeIndex]?.id}>
-      <div ref={containerRef} class="swiper wedding-slider__viewport">
+    <div class="relative min-h-dvh isolate bg-ivory" data-active-slide={slides[sliderState.activeIndex]?.id}>
+      <div ref={containerRef} class="swiper h-dvh min-h-dvh">
         <div class="swiper-wrapper">
           {slides.map((slide, index) => (
-            <div class="swiper-slide wedding-slider__slide" key={slide.id}>
+            <div class="swiper-slide h-dvh min-h-dvh overflow-hidden pointer-events-none [&.swiper-slide-active]:pointer-events-auto" key={slide.id}>
               <InvitationSection index={index} swiper={swiperRef.current} />
             </div>
           ))}

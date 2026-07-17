@@ -32,27 +32,27 @@ export function SlideNavigation({
   nextRef,
 }: SlideNavigationProps) {
   return (
-    <nav class="slide-navigation" aria-label="Навигация по приглашению">
+    <nav class="fixed bottom-[max(0.9rem,env(safe-area-inset-bottom))] left-1/2 z-20 grid -translate-x-1/2 grid-cols-[3rem_auto_3rem] items-center gap-3 rounded-full bg-paper/80 p-1.5 shadow-soft backdrop-blur-xl" aria-label="Навигация по приглашению">
       <button
         ref={previousRef}
         type="button"
-        class="slide-navigation__button"
+        class="grid size-12 cursor-pointer place-items-center rounded-full border-0 bg-transparent transition-[transform,background-color,color,opacity] duration-200 hover:not-disabled:scale-104 hover:not-disabled:bg-white/65 hover:not-disabled:text-gold-deep disabled:cursor-default disabled:opacity-25"
         disabled={isBeginning}
         aria-label="Предыдущий экран"
       >
         <ArrowIcon direction="previous" />
       </button>
 
-      <p class="slide-navigation__counter" aria-hidden="true">
+      <p class="m-0 flex min-w-16 items-center justify-center gap-1.5 text-xs tracking-[0.08em] tabular-nums" aria-hidden="true">
         <span>{String(activeIndex + 1).padStart(2, '0')}</span>
-        <span class="slide-navigation__divider" />
+        <span class="h-px w-4 bg-current opacity-30" />
         <span>{String(total).padStart(2, '0')}</span>
       </p>
 
       <button
         ref={nextRef}
         type="button"
-        class="slide-navigation__button"
+        class="grid size-12 cursor-pointer place-items-center rounded-full border-0 bg-transparent transition-[transform,background-color,color,opacity] duration-200 hover:not-disabled:scale-104 hover:not-disabled:bg-white/65 hover:not-disabled:text-gold-deep disabled:cursor-default disabled:opacity-25"
         disabled={isEnd}
         aria-label="Следующий экран"
       >

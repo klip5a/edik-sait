@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks'
-import { SectionFrame } from '../components/slide/SectionFrame'
+import { buttonClass, eyebrowClass, headingClass, SectionFrame } from '../components/slide/SectionFrame'
 import { lookupSeat } from '../services/seatingClient'
 import type { SlideMeta } from '../types/wedding'
 
@@ -43,15 +43,15 @@ export function SeatingSection({ slide }: { slide: SlideMeta }) {
 
   return (
     <SectionFrame slide={slide} compact>
-      <p class="wedding-section__eyebrow reveal-item">Ваше место</p>
-      <h2 id="slide-title-seating" class="section-heading reveal-item">План рассадки гостей</h2>
-      <div class="seating-layout reveal-item swiper-no-swiping">
-        <div class="seating-chart" aria-label="Схема столов">
-          <div class="seating-stage">Сцена</div>
+      <p class={eyebrowClass}>Ваше место</p>
+      <h2 id="slide-title-seating" class={headingClass}>План рассадки гостей</h2>
+      <div class="reveal-item swiper-no-swiping mt-5 grid w-full max-w-[58rem] gap-4 md:grid-cols-[1.1fr_0.9fr]">
+        <div class="grid grid-cols-3 gap-2.5 rounded-[1.4rem] bg-white/60 p-4 shadow-soft md:grid-cols-4" aria-label="Схема столов">
+          <div class="col-span-full rounded-lg bg-paper-deep p-2">Сцена</div>
           {tables.map((table) => (
             <button
               type="button"
-              class="seating-table"
+              class="aspect-square min-h-[3.4rem] cursor-pointer rounded-full border-2 border-dotted border-gold bg-white/70 text-lg text-gold-deep transition-[transform,color,background-color] duration-200 active:scale-[0.96] data-[selected=true]:scale-106 data-[selected=true]:bg-gold-deep data-[selected=true]:text-white"
               data-selected={selected === table ? 'true' : 'false'}
               aria-pressed={selected === table}
               aria-label={`Стол ${table}`}
@@ -62,14 +62,14 @@ export function SeatingSection({ slide }: { slide: SlideMeta }) {
             </button>
           ))}
         </div>
-        <form class="lookup-form" onSubmit={handleLookup} noValidate>
-          <label for="guest-name">Найти свой стол</label>
-          <p id="guest-name-hint">Введите имя и фамилию так, как они указаны в приглашении.</p>
-          <div class="lookup-form__row">
-            <input id="guest-name" value={query} onInput={(event) => { setQuery(event.currentTarget.value); setLookupState('idle'); setMessage('') }} aria-describedby="guest-name-hint guest-lookup-status" autocomplete="name" required minlength={3} />
-            <button class="wedding-button" type="submit" disabled={lookupState === 'loading'}>{lookupState === 'loading' ? 'Ищем…' : 'Найти'}</button>
+        <form class="grid content-center rounded-[1.4rem] bg-white/60 p-5 text-left shadow-soft" onSubmit={handleLookup} noValidate>
+          <label class="text-xl font-bold" for="guest-name">Найти свой стол</label>
+          <p class="mt-1 mb-3" id="guest-name-hint">Введите имя и фамилию так, как они указаны в приглашении.</p>
+          <div class="grid gap-2.5">
+            <input class="min-h-12 w-full rounded-lg border border-ink/30 bg-white/85 px-3 py-2" id="guest-name" value={query} onInput={(event) => { setQuery(event.currentTarget.value); setLookupState('idle'); setMessage('') }} aria-describedby="guest-name-hint guest-lookup-status" autocomplete="name" required minlength={3} />
+            <button class={buttonClass} type="submit" disabled={lookupState === 'loading'}>{lookupState === 'loading' ? 'Ищем…' : 'Найти'}</button>
           </div>
-          <p id="guest-lookup-status" class="form-status" data-state={lookupState} role="status" aria-live="polite">{message || (selected ? `Вы выбрали стол ${selected} на схеме.` : '')}</p>
+          <p id="guest-lookup-status" class="mt-2 mb-0 min-h-[1.4em] text-ink-soft data-[state=found]:font-bold data-[state=found]:text-[#416844] data-[state=error]:text-[#8c3f35] data-[state=not-found]:text-[#8c3f35]" data-state={lookupState} role="status" aria-live="polite">{message || (selected ? `Вы выбрали стол ${selected} на схеме.` : '')}</p>
         </form>
       </div>
     </SectionFrame>

@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks'
-import { SectionFrame } from '../components/slide/SectionFrame'
+import { buttonClass, copyClass, eyebrowClass, headingClass, SectionFrame } from '../components/slide/SectionFrame'
 import { submitRsvp, type RsvpPayload } from '../services/rsvpClient'
 import type { SlideMeta } from '../types/wedding'
 
@@ -50,11 +50,11 @@ export function RsvpSection({ slide }: { slide: SlideMeta }) {
 
   return (
     <SectionFrame slide={slide} compact>
-      <p class="wedding-section__eyebrow reveal-item">Ждём ваш ответ</p>
-      <h2 id="slide-title-rsvp" class="section-heading reveal-item">Подтверждение присутствия</h2>
-      <p class="section-copy reveal-item">Пожалуйста, ответьте до 10 августа 2026 года.</p>
+      <p class={eyebrowClass}>Ждём ваш ответ</p>
+      <h2 id="slide-title-rsvp" class={headingClass}>Подтверждение присутствия</h2>
+      <p class={copyClass}>Пожалуйста, ответьте до 10 августа 2026 года.</p>
 
-      <form class="rsvp-form reveal-item swiper-no-swiping" onSubmit={handleSubmit}>
+      <form class="reveal-item swiper-no-swiping mt-4 grid w-full max-w-[58rem] grid-cols-1 gap-4 rounded-3xl bg-white/90 p-[clamp(1rem,3vw,2rem)] text-left shadow-soft md:grid-cols-2 [&_.form-field]:m-0 [&_.form-field]:grid [&_.form-field]:min-w-0 [&_.form-field]:content-start [&_.form-field]:gap-2 [&_.form-field]:border-0 [&_.form-field]:p-0 [&_.form-field>label]:font-bold [&_.form-field>legend]:font-bold [&_.form-field--wide]:md:col-span-2 [&_.choice-row]:flex [&_.choice-row]:flex-wrap [&_.choice-row]:gap-x-4 [&_.choice-row]:gap-y-2 [&_.choice-row_label]:inline-flex [&_.choice-row_label]:min-h-11 [&_.choice-row_label]:cursor-pointer [&_.choice-row_label]:items-center [&_.choice-row_label]:gap-2 [&_.choice-row_label]:font-normal [&_.checkbox-grid]:grid [&_.checkbox-grid]:grid-cols-2 [&_.checkbox-grid]:gap-x-3 [&_.checkbox-grid_label]:inline-flex [&_.checkbox-grid_label]:min-h-11 [&_.checkbox-grid_label]:cursor-pointer [&_.checkbox-grid_label]:items-center [&_.checkbox-grid_label]:gap-2 [&_.checkbox-grid_label]:font-normal [&_input[type=radio]]:size-5 [&_input[type=radio]]:accent-gold-deep [&_input[type=checkbox]]:size-5 [&_input[type=checkbox]]:accent-gold-deep [&_input:not([type=radio]):not([type=checkbox])]:min-h-12 [&_input:not([type=radio]):not([type=checkbox])]:w-full [&_input:not([type=radio]):not([type=checkbox])]:rounded-lg [&_input:not([type=radio]):not([type=checkbox])]:border [&_input:not([type=radio]):not([type=checkbox])]:border-ink/30 [&_input:not([type=radio]):not([type=checkbox])]:bg-white/85 [&_input:not([type=radio]):not([type=checkbox])]:px-3 [&_input:not([type=radio]):not([type=checkbox])]:py-2 [&_select]:min-h-12 [&_select]:w-full [&_select]:rounded-lg [&_select]:border [&_select]:border-ink/30 [&_select]:bg-white/85 [&_select]:px-3 [&_textarea]:w-full [&_textarea]:resize-y [&_textarea]:rounded-lg [&_textarea]:border [&_textarea]:border-ink/30 [&_textarea]:bg-white/85 [&_textarea]:px-3 [&_textarea]:py-2" onSubmit={handleSubmit}>
         <div class="form-field form-field--wide">
           <label for="rsvp-name">Ваши имя и фамилия *</label>
           <input id="rsvp-name" name="name" autocomplete="name" required />
@@ -112,9 +112,9 @@ export function RsvpSection({ slide }: { slide: SlideMeta }) {
         ) : null}
 
         <div class="form-field form-field--wide form-actions">
-          <input class="honeypot" name="website" tabindex={-1} autocomplete="off" aria-hidden="true" />
-          <button type="submit" class="wedding-button" disabled={submitting}>{submitting ? 'Отправляем…' : 'Подтвердить'}</button>
-          <p class="form-status" role="status" aria-live="polite">{status}</p>
+          <input class="pointer-events-none absolute size-px opacity-0" name="website" tabindex={-1} autocomplete="off" aria-hidden="true" />
+          <button type="submit" class={buttonClass} disabled={submitting}>{submitting ? 'Отправляем…' : 'Подтвердить'}</button>
+          <p class="mt-2 mb-0 min-h-[1.4em] text-ink-soft" role="status" aria-live="polite">{status}</p>
         </div>
       </form>
     </SectionFrame>

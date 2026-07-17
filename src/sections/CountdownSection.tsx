@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'preact/hooks'
-import { Ornament, SectionFrame } from '../components/slide/SectionFrame'
+import { buttonClass, copyClass, Ornament, SectionFrame } from '../components/slide/SectionFrame'
 import { wedding } from '../data/wedding'
 import { createCalendarEvent } from '../lib/calendarEvent'
 import { getCountdown } from '../lib/countdown'
@@ -54,20 +54,20 @@ export function CountdownSection({ slide }: { slide: SlideMeta }) {
           ))}
         </div>
       ) : (
-        <p class="countdown-message reveal-item">
+        <p class="reveal-item mt-8 mb-0 font-script text-[clamp(2.5rem,7vw,5rem)]">
           {countdown.status === 'wedding-day' ? 'Сегодня наш особенный день!' : 'Спасибо, что разделили этот день с нами!'}
         </p>
       )}
-      <section class="countdown-calendar reveal-item !mt-4 sm:!mt-7" aria-label="Календарь свадьбы">
+      <section class="reveal-item mt-4 grid w-full max-w-[42rem] justify-items-center sm:mt-7" aria-label="Календарь свадьбы">
         <p class="m-0 font-script text-[clamp(2.25rem,5vw,3.75rem)] leading-none text-gold-deep">Август 2026</p>
-        <div class="calendar" aria-label="Календарь на август 2026 года">
-          {week.map((day) => <span class="calendar__weekday" key={day}>{day}</span>)}
+        <div class="mt-5 grid w-full max-w-[32rem] grid-cols-7 gap-1 rounded-[1.2rem] bg-white/80 p-4 shadow-soft" aria-label="Календарь на август 2026 года">
+          {week.map((day) => <span class="grid min-h-9 place-items-center text-xs font-bold uppercase tabular-nums" key={day}>{day}</span>)}
           {days.map((day, index) => {
             const weddingDay = day === 15
 
             return (
               <span
-                class={`calendar__day ${weddingDay ? 'relative isolate font-bold text-white' : ''}`}
+                class={`grid min-h-9 place-items-center tabular-nums ${weddingDay ? 'relative isolate font-bold text-white' : ''}`}
                 data-wedding-day={weddingDay ? 'true' : undefined}
                 key={`${day ?? 'blank'}-${index}`}
               >
@@ -85,10 +85,10 @@ export function CountdownSection({ slide }: { slide: SlideMeta }) {
             )
           })}
         </div>
-        <p class="section-copy">Мы очень ждём этот день и будем счастливы разделить его с вами.</p>
+        <p class={copyClass}>Мы очень ждём этот день и будем счастливы разделить его с вами.</p>
         <button
           type="button"
-          class="wedding-button mt-1 min-h-11 transition-transform active:scale-[0.96]"
+          class={`${buttonClass} mt-1 min-h-11`}
           onClick={() => calendarDialogRef.current?.showModal()}
         >
           Добавить в календарь
