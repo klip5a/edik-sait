@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 test('keeps every section inside the viewport width', async ({ page }) => {
   await page.goto('/')
 
-  for (let index = 1; index <= 9; index += 1) {
+  for (let index = 1; index <= 8; index += 1) {
     await page.getByRole('button', { name: new RegExp(`^${index}\\.`) }).click()
     const metrics = await page.evaluate(() => ({
       viewport: document.documentElement.clientWidth,

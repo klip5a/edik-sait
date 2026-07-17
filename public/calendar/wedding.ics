@@ -1,0 +1,27 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Anastasia and Eduard//Wedding Invitation//RU
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Свадьба Анастасии и Эдуарда
+X-WR-TIMEZONE:Asia/Yekaterinburg
+BEGIN:VEVENT
+UID:wedding-20260815@voiko-x2.ru
+DTSTAMP:20260716T000000Z
+DTSTART:20260815T060000Z
+DTEND:20260815T190000Z
+SUMMARY:Свадьба Анастасии и Эдуарда
+DESCRIPTION:Будем счастливы разделить этот день с вами!
+LOCATION:Отделение ЗАГС Ленинского района\, Екатеринбург\, ул. Хохрякова\, 104 / Ресторан «Гоголь 15»\, Екатеринбург\, ул. Гоголя\, 15е
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:До свадьбы Анастасии и Эдуарда осталась неделя
+TRIGGER:-P7D
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Свадьба Анастасии и Эдуарда уже завтра
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

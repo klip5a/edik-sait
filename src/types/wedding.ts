@@ -1,7 +1,6 @@
 export type SlideId =
   | 'hero'
   | 'countdown'
-  | 'calendar'
   | 'schedule'
   | 'location'
   | 'seating'
@@ -26,12 +25,14 @@ export interface WeddingLocation {
   address: string
   startsAt: string
   mapQuery: string
+  coordinates: readonly [longitude: number, latitude: number]
 }
 
 export interface ScheduleEvent {
   id: string
   time: string
   title: string
+  detail?: string
   locationId?: WeddingLocation['id']
 }
 

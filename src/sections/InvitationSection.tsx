@@ -1,6 +1,5 @@
 import type Swiper from 'swiper'
 import { slides } from '../data/wedding'
-import { CalendarSection } from './CalendarSection'
 import { CountdownSection } from './CountdownSection'
 import { FinaleSection } from './FinaleSection'
 import { HeroSection } from './HeroSection'
@@ -14,9 +13,8 @@ export function InvitationSection({ index, swiper }: { index: number; swiper: Sw
   const slide = slides[index]
 
   switch (slide.id) {
-    case 'hero': return <HeroSection slide={slide} onNext={() => swiper?.slideNext()} />
+    case 'hero': return <HeroSection slide={slide} />
     case 'countdown': return <CountdownSection slide={slide} />
-    case 'calendar': return <CalendarSection slide={slide} />
     case 'schedule': return <ScheduleSection slide={slide} />
     case 'location': return <LocationSection slide={slide} />
     case 'seating': return <SeatingSection slide={slide} />

@@ -8,7 +8,7 @@ test('finds a guest without downloading the guest list', async ({ page }) => {
   })
 
   await page.goto('/')
-  await page.getByRole('button', { name: '6. План рассадки гостей' }).click()
+  await page.getByRole('button', { name: '5. План рассадки гостей' }).click()
   await page.getByLabel('Найти свой стол').fill('Иван Иванов')
   await page.getByRole('button', { name: 'Найти' }).click()
 

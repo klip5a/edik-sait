@@ -8,3 +8,4 @@ test-results/
 output/
 .playwright-cli/
 *.tsbuildinfo
+docs/

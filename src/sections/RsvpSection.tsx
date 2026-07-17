@@ -3,7 +3,7 @@ import { SectionFrame } from '../components/slide/SectionFrame'
 import { submitRsvp, type RsvpPayload } from '../services/rsvpClient'
 import type { SlideMeta } from '../types/wedding'
 
-const alcoholOptions = ['Водка', 'Шампанское', 'Вино', 'Настойки', 'Ликёр']
+const alcoholOptions = ['Шампанское', 'Вино', 'Водка', 'Ликер', 'Коньяк', 'Виски']
 
 export function RsvpSection({ slide }: { slide: SlideMeta }) {
   const [drinksAlcohol, setDrinksAlcohol] = useState('')
@@ -71,11 +71,11 @@ export function RsvpSection({ slide }: { slide: SlideMeta }) {
         {attendance === 'yes' ? (
           <>
             <fieldset class="form-field">
-              <legend>Будете на церемонии? *</legend>
+              <legend>Приду на регистрацию *</legend>
               <div class="choice-row"><label><input type="radio" name="ceremony" value="yes" required /> Да</label><label><input type="radio" name="ceremony" value="no" /> Нет</label></div>
             </fieldset>
             <fieldset class="form-field">
-              <legend>Поедете на фотосессию в парк? *</legend>
+              <legend>Желаете ли быть на фотосессии? *</legend>
               <div class="choice-row"><label><input type="radio" name="photoSession" value="yes" required /> Да</label><label><input type="radio" name="photoSession" value="no" /> Нет</label></div>
             </fieldset>
             <div class="form-field">
@@ -89,17 +89,15 @@ export function RsvpSection({ slide }: { slide: SlideMeta }) {
               </select>
             </div>
             <fieldset class="form-field">
-              <legend>Будете пить алкоголь? *</legend>
+              <legend>Будете ли пить алкогольные напитки? *</legend>
               <div class="choice-row"><label><input type="radio" name="drinksAlcohol" value="yes" required onChange={() => setDrinksAlcohol('yes')} /> Да</label><label><input type="radio" name="drinksAlcohol" value="no" onChange={() => setDrinksAlcohol('no')} /> Нет</label></div>
             </fieldset>
             {drinksAlcohol === 'yes' ? (
               <fieldset class="form-field form-field--wide alcohol-field">
-                <legend>Что предпочитаете? Можно выбрать несколько вариантов</legend>
+                <legend>Какой желаете алкоголь? Можно выбрать несколько вариантов</legend>
                 <div class="checkbox-grid">
                   {alcoholOptions.map((option) => <label key={option}><input type="checkbox" name="alcohol" value={option} /> {option}</label>)}
                 </div>
-                <label for="alcohol-other">Другое</label>
-                <input id="alcohol-other" name="alcoholOther" />
               </fieldset>
             ) : null}
             <div class="form-field">

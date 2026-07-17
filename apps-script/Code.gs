@@ -118,7 +118,7 @@ function lookupSeat_(payload) {
 
 function validateRsvp_(payload) {
   var yesNo = ['yes', 'no'];
-  var allowedAlcohol = ['Водка', 'Шампанское', 'Вино', 'Настойки', 'Ликёр'];
+  var allowedAlcohol = ['Шампанское', 'Вино', 'Водка', 'Ликер', 'Коньяк', 'Виски'];
   var name = cleanText_(payload.name, 120);
 
   if (name.length < 2) return invalid_('name', 'Укажите имя и фамилию.');
