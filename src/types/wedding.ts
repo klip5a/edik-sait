@@ -4,7 +4,6 @@ export type SlideId =
   | 'schedule'
   | 'location'
   | 'seating'
-  | 'wishes'
   | 'rsvp'
   | 'finale'
 

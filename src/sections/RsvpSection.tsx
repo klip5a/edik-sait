@@ -46,11 +46,24 @@ export function RsvpSection({ slide }: { slide: SlideMeta }) {
 
   return (
     <SectionFrame slide={slide} compact>
-      <p class={eyebrowClass}>Ждём ваш ответ</p>
+      <p class={eyebrowClass}>Пожелания и ответ</p>
       <h2 id="slide-title-rsvp" class={headingClass}>Подтверждение присутствия</h2>
       <p class={copyClass}>Пожалуйста, ответьте до 10 августа 2026 года.</p>
 
-      <form class="reveal-item swiper-no-swiping mt-4 grid w-full max-w-[58rem] grid-cols-1 gap-4 rounded-3xl bg-white/90 p-[clamp(1rem,3vw,2rem)] text-left shadow-soft md:grid-cols-2 [&_.form-field]:m-0 [&_.form-field]:grid [&_.form-field]:min-w-0 [&_.form-field]:content-start [&_.form-field]:gap-2 [&_.form-field]:border-0 [&_.form-field]:p-0 [&_.form-field>label]:font-bold [&_.form-field>legend]:font-bold [&_.form-field--wide]:md:col-span-2 [&_.choice-row]:flex [&_.choice-row]:flex-wrap [&_.choice-row]:gap-x-4 [&_.choice-row]:gap-y-2 [&_.choice-row_label]:inline-flex [&_.choice-row_label]:min-h-11 [&_.choice-row_label]:cursor-pointer [&_.choice-row_label]:items-center [&_.choice-row_label]:gap-2 [&_.choice-row_label]:font-normal [&_.checkbox-grid]:grid [&_.checkbox-grid]:grid-cols-2 [&_.checkbox-grid]:gap-x-3 [&_.checkbox-grid_label]:inline-flex [&_.checkbox-grid_label]:min-h-11 [&_.checkbox-grid_label]:cursor-pointer [&_.checkbox-grid_label]:items-center [&_.checkbox-grid_label]:gap-2 [&_.checkbox-grid_label]:font-normal [&_input[type=radio]]:size-5 [&_input[type=radio]]:accent-gold-deep [&_input[type=checkbox]]:size-5 [&_input[type=checkbox]]:accent-gold-deep [&_input:not([type=radio]):not([type=checkbox])]:min-h-12 [&_input:not([type=radio]):not([type=checkbox])]:w-full [&_input:not([type=radio]):not([type=checkbox])]:rounded-lg [&_input:not([type=radio]):not([type=checkbox])]:border [&_input:not([type=radio]):not([type=checkbox])]:border-ink/30 [&_input:not([type=radio]):not([type=checkbox])]:bg-white/85 [&_input:not([type=radio]):not([type=checkbox])]:px-3 [&_input:not([type=radio]):not([type=checkbox])]:py-2 [&_select]:min-h-12 [&_select]:w-full [&_select]:rounded-lg [&_select]:border [&_select]:border-ink/30 [&_select]:bg-white/85 [&_select]:px-3 [&_textarea]:w-full [&_textarea]:resize-y [&_textarea]:rounded-lg [&_textarea]:border [&_textarea]:border-ink/30 [&_textarea]:bg-white/85 [&_textarea]:px-3 [&_textarea]:py-2" onSubmit={handleSubmit}>
+      <div class="reveal-item mt-4 w-full max-w-[58rem] rounded-3xl bg-white/70 p-[clamp(1rem,3vw,1.6rem)] text-left shadow-soft">
+        <p class="m-0 text-[clamp(1.05rem,2vw,1.28rem)] font-semibold text-ink">Самым главным подарком для нас будет ваше присутствие.</p>
+        <p class="mt-3 mb-0 text-[clamp(1rem,1.9vw,1.18rem)] leading-relaxed text-ink-soft">
+          Если захотите поздравить нас, мы будем благодарны за вклад в наше семейное будущее.
+          А ниже можно сразу оставить ответы и пожелания, чтобы они попали к нам в админку вместе с вашим именем.
+        </p>
+      </div>
+
+      <form class="reveal-item swiper-no-swiping mt-4 grid w-full max-w-[58rem] grid-cols-1 gap-4 rounded-3xl bg-white/90 p-[clamp(1rem,3vw,2rem)] text-left shadow-soft md:grid-cols-2 [&_.form-field]:m-0 [&_.form-field]:grid [&_.form-field]:min-w-0 [&_.form-field]:content-start [&_.form-field]:gap-2 [&_.form-field]:border-0 [&_.form-field]:p-0 [&_.form-field>label]:font-bold [&_.form-field>legend]:font-bold [&_.form-field--wide]:md:col-span-2 [&_.form-section]:rounded-2xl [&_.form-section]:bg-[#fbf7ef] [&_.form-section]:p-4 [&_.form-section]:md:col-span-2 [&_.form-section_title]:m-0 [&_.form-section_title]:text-lg [&_.form-section_title]:font-semibold [&_.form-section_copy]:mt-1 [&_.form-section_copy]:mb-0 [&_.form-section_copy]:text-sm [&_.form-section_copy]:text-ink-soft [&_.choice-row]:flex [&_.choice-row]:flex-wrap [&_.choice-row]:gap-x-4 [&_.choice-row]:gap-y-2 [&_.choice-row_label]:inline-flex [&_.choice-row_label]:min-h-11 [&_.choice-row_label]:cursor-pointer [&_.choice-row_label]:items-center [&_.choice-row_label]:gap-2 [&_.choice-row_label]:font-normal [&_.checkbox-grid]:grid [&_.checkbox-grid]:grid-cols-2 [&_.checkbox-grid]:gap-x-3 [&_.checkbox-grid_label]:inline-flex [&_.checkbox-grid_label]:min-h-11 [&_.checkbox-grid_label]:cursor-pointer [&_.checkbox-grid_label]:items-center [&_.checkbox-grid_label]:gap-2 [&_.checkbox-grid_label]:font-normal [&_input[type=radio]]:size-5 [&_input[type=radio]]:accent-gold-deep [&_input[type=checkbox]]:size-5 [&_input[type=checkbox]]:accent-gold-deep [&_input:not([type=radio]):not([type=checkbox])]:min-h-12 [&_input:not([type=radio]):not([type=checkbox])]:w-full [&_input:not([type=radio]):not([type=checkbox])]:rounded-lg [&_input:not([type=radio]):not([type=checkbox])]:border [&_input:not([type=radio]):not([type=checkbox])]:border-ink/30 [&_input:not([type=radio]):not([type=checkbox])]:bg-white/85 [&_input:not([type=radio]):not([type=checkbox])]:px-3 [&_input:not([type=radio]):not([type=checkbox])]:py-2 [&_select]:min-h-12 [&_select]:w-full [&_select]:rounded-lg [&_select]:border [&_select]:border-ink/30 [&_select]:bg-white/85 [&_select]:px-3 [&_textarea]:w-full [&_textarea]:resize-y [&_textarea]:rounded-lg [&_textarea]:border [&_textarea]:border-ink/30 [&_textarea]:bg-white/85 [&_textarea]:px-3 [&_textarea]:py-2" onSubmit={handleSubmit}>
+        <div class="form-section">
+          <h3 class="form-section_title">Ваш ответ</h3>
+          <p class="form-section_copy">Заполните имя и подтвердите, сможете ли быть с нами в этот день.</p>
+        </div>
+
         <div class="form-field form-field--wide">
           <label for="rsvp-name">Ваши имя и фамилия *</label>
           <input id="rsvp-name" name="name" autocomplete="name" required />
@@ -66,6 +79,11 @@ export function RsvpSection({ slide }: { slide: SlideMeta }) {
 
         {attendance === 'yes' ? (
           <>
+            <div class="form-section">
+              <h3 class="form-section_title">Пожелания гостя</h3>
+              <p class="form-section_copy">Здесь вы можете выбрать регистрацию, фотосессию, напитки и оставить свои пожелания для нас.</p>
+            </div>
+
             <fieldset class="form-field">
               <legend>Приду на регистрацию *</legend>
               <div class="choice-row"><label><input type="radio" name="ceremony" value="yes" required /> Да</label><label><input type="radio" name="ceremony" value="no" /> Нет</label></div>
@@ -96,13 +114,19 @@ export function RsvpSection({ slide }: { slide: SlideMeta }) {
                 </div>
               </fieldset>
             ) : null}
+            {drinksAlcohol === 'yes' ? (
+              <div class="form-field form-field--wide">
+                <label for="alcohol-other">Если хотите, укажите свой вариант</label>
+                <input id="alcohol-other" name="alcoholOther" placeholder="Например, игристое брют или безалкогольный вариант" />
+              </div>
+            ) : null}
             <div class="form-field">
               <label for="dietary">Ограничения по питанию</label>
               <input id="dietary" name="dietary" placeholder="Аллергии, предпочтения" />
             </div>
-            <div class="form-field">
-              <label for="comment">Комментарий</label>
-              <textarea id="comment" name="comment" rows={3} />
+            <div class="form-field form-field--wide">
+              <label for="comment">Ваши пожелания или комментарий</label>
+              <textarea id="comment" name="comment" rows={3} placeholder="Можно написать пожелания, предпочтения или важную для нас информацию" />
             </div>
           </>
         ) : null}

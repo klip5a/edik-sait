@@ -15,6 +15,8 @@ interface SliderState {
   isEnd: boolean
 }
 
+const storageKey = 'wedding-active-slide'
+
 const initialState: SliderState = {
   activeIndex: 0,
   isBeginning: true,
@@ -32,12 +34,16 @@ export function WeddingSlider() {
     const container = containerRef.current
     if (!container) return
 
+    const savedIndex = Number(window.localStorage.getItem(storageKey) ?? 0)
+    const initialSlide = Number.isInteger(savedIndex) && savedIndex >= 0 && savedIndex < slides.length ? savedIndex : 0
+
     const syncState = (swiper: Swiper) => {
       setSliderState({
         activeIndex: swiper.activeIndex,
         isBeginning: swiper.isBeginning,
         isEnd: swiper.isEnd,
       })
+      window.localStorage.setItem(storageKey, String(swiper.activeIndex))
 
       swiper.slides.forEach((slide, index) => {
         const isActive = index === swiper.activeIndex
@@ -49,6 +55,7 @@ export function WeddingSlider() {
     const swiper = new Swiper(container, {
       modules: [A11y, EffectFade, Keyboard, Mousewheel, Navigation],
       slidesPerView: 1,
+      initialSlide,
       speed: 820,
       effect: 'fade',
       fadeEffect: { crossFade: true },

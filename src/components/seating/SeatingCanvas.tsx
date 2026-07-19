@@ -14,19 +14,100 @@ interface SeatingCanvasProps {
   onSeatSelect?: (table: number, seat: number) => void
 }
 
+interface SeatLayout {
+  x: number
+  y: number
+  rotation: number
+}
+
+interface TableLayout {
+  x: number
+  y: number
+  chairs: readonly SeatLayout[]
+}
+
 const WIDTH = 800
 const HEIGHT = 650
-const TABLES = [
-  { x: 220, y: 235 },
-  { x: 580, y: 235 },
-  { x: 220, y: 470 },
-  { x: 580, y: 470 },
-]
+const TABLE_RADIUS = 68
+
+// Manual seating layout. Change x/y to move a table or chair.
+// rotation:
+// 0 = horizontal
+// 90 = vertical
+// 45 = diagonal
+// -45 = diagonal to the other side
+const TABLE_LAYOUTS: readonly TableLayout[] = [
+  {
+    x: 220,
+    y: 235,
+    chairs: [
+      { x: 190, y: 150, rotation: -20 }, // table 1, chair 1
+      { x: 139, y: 185, rotation: 120 }, // table 1, chair 2
+      { x: 130, y: 250, rotation: 80 }, // table 1, chair 3
+      { x: 160, y: 310, rotation: 40 }, // table 1, chair 4
+      { x: 220, y: 325, rotation: 0 }, // table 1, chair 5
+      { x: 280, y: 310, rotation: -40 }, // table 1, chair 6
+    ],
+  },
+  {
+    x: 580,
+    y: 235,
+    chairs: [
+      { x: 620, y: 155, rotation: 25 }, // table 2, chair 1
+      { x: 665, y: 200, rotation: 70 }, // table 2, chair 2
+      { x: 670, y: 260, rotation: 110 }, // table 2, chair 3
+      { x: 640, y: 310, rotation: 140 }, // table 2, chair 4
+      { x: 580, y: 330, rotation: 0 }, // table 2, chair 5
+      { x: 520, y: 310, rotation: 40 }, // table 2, chair 6
+    ],
+  },
+  {
+    x: 220,
+    y: 470,
+    chairs: [
+      { x: 155, y: 400, rotation: 135 }, // table 3, chair 1
+      { x: 130, y: 455, rotation: 99 }, // table 3, chair 2
+      { x: 135, y: 510, rotation: 60 }, // table 3, chair 3
+      { x: 180, y: 550, rotation: 27 }, // table 3, chair 4
+      { x: 240, y: 555, rotation: -15 }, // table 3, chair 5
+      { x: 295, y: 529, rotation: -50 }, // table 3, chair 6
+    ],
+  },
+  {
+    x: 580,
+    y: 470,
+    chairs: [
+      { x: 650, y: 410, rotation: 45 }, // table 4, chair 1
+      { x: 675, y: 470, rotation: 90 }, // table 4, chair 2
+      { x: 660, y: 526, rotation: 130 }, // table 4, chair 3
+      { x: 604, y: 560, rotation: 165 }, // table 4, chair 4
+      { x: 540, y: 555, rotation: 30 }, // table 4, chair 5
+      { x: 495, y: 510, rotation: 70 }, // table 4, chair 6
+    ],
+  },
+] as const
+
+const TABLES = TABLE_LAYOUTS.map(({ x, y }) => ({ x, y }))
 
 function chairPosition(tableIndex: number, seatIndex: number) {
-  const table = TABLES[tableIndex]
-  const angle = -Math.PI / 2 + seatIndex * Math.PI / 3
-  return { x: table.x + Math.cos(angle) * 92, y: table.y + Math.sin(angle) * 92, angle }
+  return TABLE_LAYOUTS[tableIndex].chairs[seatIndex]
+}
+
+function toRadians(degrees: number) {
+  return degrees * Math.PI / 180
+}
+
+function tableAtPoint(clientX: number, clientY: number, rect: DOMRect) {
+  const x = (clientX - rect.left) * (WIDTH / rect.width)
+  const y = (clientY - rect.top) * (HEIGHT / rect.height)
+
+  for (let index = 0; index < TABLES.length; index += 1) {
+    const table = TABLES[index]
+    const distance = Math.hypot(x - table.x, y - table.y)
+    if (distance <= TABLE_RADIUS) return index + 1
+  }
+
+  return null
 }
 
 export function SeatingCanvas({ guests, admin = false, selectedSeat, onSeatSelect }: SeatingCanvasProps) {
@@ -59,19 +140,40 @@ export function SeatingCanvas({ guests, admin = false, selectedSeat, onSeatSelec
 
   const shownTable = hoveredTable ?? activeTable
   const shownGuests = shownTable ? guests.filter((guest) => guest.tableNumber === shownTable) : []
+  const canShowOverlay = Boolean(shownTable && shownGuests.length)
+
+  const handlePointerMove = (event: MouseEvent | PointerEvent) => {
+    const rect = hostRef.current?.getBoundingClientRect()
+    if (!rect) return
+    setHoveredTable(tableAtPoint(event.clientX, event.clientY, rect))
+  }
+
+  const handlePointerLeave = () => setHoveredTable(null)
+
+  const handleTableClick = (event: MouseEvent) => {
+    const rect = hostRef.current?.getBoundingClientRect()
+    if (!rect) return
+    const table = tableAtPoint(event.clientX, event.clientY, rect)
+    if (!table) return
+    setActiveTable(activeTable === table ? null : table)
+  }
 
   return (
-    <div ref={hostRef} class="relative mx-auto w-full max-w-[50rem] overflow-hidden rounded-3xl bg-[#f6f0e4] shadow-soft outline-1 -outline-offset-1 outline-black/10">
+    <div
+      ref={hostRef}
+      class="relative mx-auto w-full max-w-[50rem] overflow-hidden rounded-3xl bg-[#f6f0e4] shadow-soft outline-1 -outline-offset-1 outline-black/10"
+      onMouseMove={handlePointerMove}
+      onMouseLeave={handlePointerLeave}
+      onClick={handleTableClick}
+    >
       <canvas ref={canvasRef} class="block aspect-[800/650] w-full" aria-hidden="true" />
 
       {TABLES.map((table, tableIndex) => (
         <button
           type="button"
-          class="absolute size-[23%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-transparent text-transparent outline-none transition-[box-shadow] hover:shadow-[0_0_0_3px_rgb(156_108_38/0.42)] focus-visible:shadow-[0_0_0_4px_rgb(156_108_38/0.62)]"
+          class="sr-only"
           style={{ left: `${table.x / WIDTH * 100}%`, top: `${table.y / HEIGHT * 100}%` }}
-          aria-label={`Стол ${tableIndex + 1}. ${guests.filter((guest) => guest.tableNumber === tableIndex + 1).map((guest) => guest.name).join(', ') || 'Свободен'}`}
-          onMouseEnter={() => setHoveredTable(tableIndex + 1)}
-          onMouseLeave={() => setHoveredTable(null)}
+          aria-label={`Стол ${tableIndex + 1}. ${guests.filter((guest) => guest.tableNumber === tableIndex + 1).map((guest) => guest.name).join(', ') || 'Гости не назначены'}`}
           onFocus={() => setHoveredTable(tableIndex + 1)}
           onBlur={() => setHoveredTable(null)}
           onClick={() => setActiveTable(activeTable === tableIndex + 1 ? null : tableIndex + 1)}
@@ -95,14 +197,15 @@ export function SeatingCanvas({ guests, admin = false, selectedSeat, onSeatSelec
         )
       })) : null}
 
-      {shownTable ? (
+      {canShowOverlay ? (
         <div class="pointer-events-none absolute top-3 right-3 z-10 w-[min(15rem,52%)] rounded-2xl bg-white/95 p-3 text-left text-sm shadow-[0_12px_35px_rgb(67_58_51/0.18)] backdrop-blur-sm" role="status">
           <strong class="block text-base text-gold-deep">Стол {shownTable}</strong>
-          {shownGuests.length ? (
-            <ul class="mt-1 mb-0 list-none p-0">
-              {shownGuests.map((guest) => <li key={guest.id}>{guest.seatNumber}. {guest.name}</li>)}
-            </ul>
-          ) : <span class="text-ink-soft">Пока свободен</span>}
+          <ul class="mt-1 mb-0 list-none p-0">
+            {shownGuests
+              .slice()
+              .sort((left, right) => (left.seatNumber ?? 99) - (right.seatNumber ?? 99))
+              .map((guest) => <li key={guest.id}>{guest.seatNumber}. {guest.name}</li>)}
+          </ul>
         </div>
       ) : null}
     </div>
@@ -139,7 +242,7 @@ function drawRoom(
     for (let seatIndex = 0; seatIndex < 6; seatIndex++) {
       const chair = chairPosition(tableIndex, seatIndex)
       const occupied = guests.some((guest) => guest.tableNumber === tableIndex + 1 && guest.seatNumber === seatIndex + 1)
-      ctx.save(); ctx.translate(chair.x, chair.y); ctx.rotate(chair.angle + Math.PI / 2)
+      ctx.save(); ctx.translate(chair.x, chair.y); ctx.rotate(toRadians(chair.rotation))
       ctx.fillStyle = occupied ? '#c99a48' : '#f8f3e9'; ctx.strokeStyle = occupied ? '#9c6c26' : '#9b8c7b'; ctx.lineWidth = 2
       roundedRect(ctx, -22, -15, 44, 30, 7); ctx.fill(); ctx.stroke(); ctx.restore()
       if (selectedSeat?.table === tableIndex + 1 && selectedSeat.seat === seatIndex + 1) {
@@ -152,8 +255,6 @@ function drawRoom(
     ctx.fillStyle = '#6b5844'; ctx.font = '500 24px Georgia'; ctx.fillText(String(tableIndex + 1), table.x, table.y + 8)
   })
 
-  ctx.fillStyle = '#9c6c26'; ctx.beginPath(); ctx.moveTo(375, 622); ctx.lineTo(425, 622); ctx.lineTo(400, 598); ctx.closePath(); ctx.fill()
-  ctx.font = '600 15px Georgia'; ctx.fillText('ВХОД', 400, 590)
 }
 
 function roundedRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
