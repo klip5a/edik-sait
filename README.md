@@ -7,9 +7,17 @@
 ## Запуск
 
 ```bash
-npm ci
+mise use -g node@24.15.0
+corepack enable
+pnpm install
 cp .env.example .env
-npm run dev
+pnpm dev
+```
+
+Проект зафиксирован на Node `24.15.0`. Если до этого зависимости ставились под другой версией Node, выполните:
+
+```bash
+pnpm rebuild better-sqlite3
 ```
 
 Заполните переменные в `.env`:
@@ -17,29 +25,30 @@ npm run dev
 - `VITE_YANDEX_MAPS_API_KEY` — ключ JavaScript API Яндекс Карт.
 - `DATABASE_PATH` — путь к persistent SQLite-файлу.
 - `ADMIN_USERNAME` — общий логин Эдика и Насти.
-- `ADMIN_PASSWORD_HASH` — хеш пароля из команды `npm run password:hash -- "пароль"`.
+- `ADMIN_PASSWORD_HASH` — хеш пароля из команды `pnpm password:hash "пароль"`.
 - `SESSION_SECRET` — случайная длинная строка для production.
 
 ## Команды
 
 ```bash
-npm run build
-npm run test
-npm run test:e2e
-npm start
+pnpm dev
+pnpm build
+pnpm test
+pnpm test:e2e
+pnpm start
 ```
 
-После `npm run build` команда `npm start` запускает production-сервер Hono на порту `PORT`, раздаёт собранный сайт и API. Админка доступна по `/admin`.
+`pnpm dev` запускает Vite и Hono вместе. Админка в разработке доступна на `http://localhost:5173/admin`, а API идёт через Vite proxy на Hono.
 
-Для локальной разработки запустите `npm run dev` и `npm run dev:server` в двух терминалах. Vite проксирует `/api` на Hono.
+После `pnpm build` команда `pnpm start` запускает production-сервер Hono на порту `PORT`, раздаёт собранный сайт и API. Админка доступна по `/admin`.
 
 ## Проверка админки
 
 Самый простой сценарий:
 
 ```bash
-npm run build
-npm start
+pnpm build
+pnpm start
 ```
 
 Откройте `http://localhost:3000/admin`.
@@ -60,8 +69,7 @@ npm start
 Режим разработки:
 
 ```bash
-npm run dev:server
-npm run dev
+pnpm dev
 ```
 
 В этом режиме админка будет доступна на `http://localhost:5173/admin`, а API пойдёт через Vite proxy на Hono.
