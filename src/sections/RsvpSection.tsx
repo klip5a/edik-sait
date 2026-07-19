@@ -35,11 +35,7 @@ export function RsvpSection({ slide }: { slide: SlideMeta }) {
     setStatus('')
     try {
       const mode = await submitRsvp(payload)
-      setStatus(
-        mode === 'remote'
-          ? 'Спасибо! Ваш ответ отправлен.'
-          : 'Тестовый режим: ответ сохранён только на этом устройстве. Для настоящей отправки нужно подключить Google Таблицу.',
-      )
+      setStatus(mode === 'remote' ? 'Спасибо! Ваш ответ отправлен.' : 'Ответ сохранён.')
       if (mode === 'remote') form.reset()
     } catch {
       setStatus('Не удалось отправить ответ. Проверьте интернет и попробуйте ещё раз — введённые данные сохранены в форме.')

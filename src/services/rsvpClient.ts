@@ -1,5 +1,3 @@
-import { callAppsScript } from './appsScriptClient'
-
 export interface RsvpPayload {
   name: string
   attendance: string
@@ -15,15 +13,8 @@ export interface RsvpPayload {
 }
 
 export async function submitRsvp(payload: RsvpPayload): Promise<'remote' | 'demo'> {
-  const endpoint = import.meta.env.VITE_RSVP_ENDPOINT?.trim()
-
-  if (!endpoint) {
-    localStorage.setItem('wedding-rsvp-draft', JSON.stringify(payload))
-    await new Promise((resolve) => window.setTimeout(resolve, 500))
-    return 'demo'
-  }
-
-  const response = await callAppsScript(endpoint, 'submitRsvp', { ...payload })
-  if (!response.ok) throw new Error(response.message || 'Не удалось отправить ответ')
+  const response = await fetch('/api/rsvp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+  const result = await response.json().catch(() => ({}))
+  if (!response.ok || !result.ok) throw new Error(result.message || 'Не удалось отправить ответ')
   return 'remote'
 }
